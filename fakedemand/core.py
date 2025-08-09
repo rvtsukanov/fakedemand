@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import datetime
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 from typing import Optional, List, Dict
 
@@ -10,14 +12,30 @@ class Factor:
     previous_plug_in_applier: Optional[
         Dict] = {}  # это набор правил, описывающий ВСЕ возможные способы применить все существующие факторы
 
-    date_left = None
-    date_right = None
+    # date_left = datetime.date(2022, 1, 1)
+    date_left = datetime.date(2022, 1, 1)
+    date_right = datetime.date(2023, 1, 1)
     date_freq = 'W-MON'  # similar to pd.DateIndex freq
+    # date_freq = 'D'  # similar to pd.DateIndex freq
 
     processed_values = None  ## check if apply was applied
 
     def __init__(self, use_as_feature=False):
         self.use_as_feature = use_as_feature
+        self.own_values = self.build_own_values()
+
+    def __mul__(self, other):
+        if isinstance(other, Factor):
+            self.own_values = self.own_values * other.own_values
+            return self
+
+    def render(self):
+        plt.figure(figsize=(20, 3))
+        # plt.title(f'{self.__str__()}}')
+        sns.lineplot(x=self.date_range, y=self.own_values, markers='rx')
+        plt.show(block=True)
+        plt.interactive(False)
+
 
     @property
     def date_range(self):
