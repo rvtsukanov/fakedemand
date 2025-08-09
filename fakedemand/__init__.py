@@ -7,6 +7,7 @@ including trends, seasonality, change points, and more.
 
 from .core import Factor
 from .series import Row
+from .rowset import RowSet, FactorConfig
 from .factors import (
     OOS,
     LinearTrend,
@@ -15,12 +16,15 @@ from .factors import (
     NewTrend,
     Sales,
     Constant,
-    Multiplier
+    Multiplier,
+    Noise
 )
 
 __all__ = [
     'Factor',
     'Row',
+    'RowSet',
+    'FactorConfig',
     'OOS',
     'LinearTrend',
     'ChangePoints',
@@ -28,5 +32,6 @@ __all__ = [
     'NewTrend',
     'Sales',
     'Constant',
-    'Multiplier'
+    'Multiplier',
+    'Noise'
 ]
