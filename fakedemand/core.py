@@ -35,14 +35,16 @@ class Factor:
         sns.lineplot(x=self.date_range, y=self.own_values, markers='rx')
         plt.show(block=True)
         plt.interactive(False)
+        plt.show()
 
 
     @property
     def date_range(self):
-        return pd.date_range(self.date_left,
-                             self.date_right,
-                             freq=self.date_freq)
-
+        return pd.date_range(
+            self.date_left,
+            self.date_right,
+            freq=self.date_freq
+        )
     @property
     def num_points(self):
         return self.date_range.shape[0]

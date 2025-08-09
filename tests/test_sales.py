@@ -1,5 +1,5 @@
 import pytest
-from fakedemand.factors import Sales
+from fakedemand.factors.sales import Sales
 import datetime
 from inspect import signature
 
